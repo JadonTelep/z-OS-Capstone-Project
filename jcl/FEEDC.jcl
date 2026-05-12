@@ -63,29 +63,39 @@
 //EFILE   DD DSN=&SYSUID..CAP.ERRORS,DISP=SHR
 //STEPLIB DD DSN=&SYSUID..CAP.LOAD,DISP=SHR
 //************************************************************
-//* SORT COMMON FILE                                         *
+//* DEFINE GDG                                               *
 //************************************************************
-//DELETE   EXEC PGM=IEFBR14
+//DEFINE   EXEC PGM=IDCAMS
+//SYSPRINT DD SYSOUT=*
+//SYSIN    DD *
+  DELETE MATEGD.CAP.COMMON.SORTED GDG FORCE
+  IF LASTCC < 9 THEN -
+  DEFINE GDG(NAME(MATEGD.CAP.COMMON.SORTED) -
+    LIMIT(50) -
+    NOEMPTY -
+    SCRATCH)
+/*
+//************************************************************
+//* ALLOCATE PS DATA SET USING IEFBR14 UTILITY               *
+//************************************************************
+//ALLOC    EXEC PGM=IEFBR14
 //SYSPRINT DD SYSOUT=*
 //SYSOUT   DD SYSOUT=*
 //SYSDUMP  DD SYSOUT=*
-//DD1      DD DSN=&SYSUID..CAP.COMMON.SORTED,
-//            DISP=(MOD,DELETE,DELETE),
-//            SPACE=(TRK,(0)),
-//            UNIT=SYSDA,
+//DD1      DD DSN=&SYSUID..CAP.COMMON.SORTED(+1),
+//            DISP=(NEW,CATLG,DELETE),
+//            SPACE=(TRK,(1,1),RLSE),UNIT=SYSDA,
 //            VOL=SER=DEVHD1,
 //            DCB=(DSORG=PS,RECFM=FB,LRECL=143,BLKSIZE=14300)
+//************************************************************
+//* SORT COMMON FILE                                         *
+//************************************************************
 //SORT     EXEC PGM=SORT
 //SYSPRINT DD SYSOUT=*
 //SYSOUT   DD SYSOUT=*
 //SORTIN   DD DSN=&SYSUID..CAP.COMMON,
 //            DISP=SHR
-//SORTOUT  DD DSN=&SYSUID..CAP.COMMON.SORTED,
-//            DISP=(NEW,CATLG,DELETE),
-//            SPACE=(TRK,(1,1),RLSE),
-//            UNIT=SYSDA,
-//            VOL=SER=DEVHD1,
-//            DCB=(DSORG=PS,RECFM=FB,LRECL=143,BLKSIZE=14300)
+//SORTOUT  DD DSN=&SYSUID..CAP.COMMON.SORTED(+1),DISP=SHR
 //SYMNAMES DD *
 NAME,1,100,CH
 LANGCODE,101,2,CH

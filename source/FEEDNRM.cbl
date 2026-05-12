@@ -157,10 +157,19 @@
            move zero to Tally-Field
            inspect F1-Email-Address
                Tallying Tally-Field for all '@'
-           inspect F1-Email-Address
-               Tallying Tally-Field for all '.com'
-           if not Tally-Field = 2
+           if Tally-Field = 1
+               unstring F1-Email-Address
+                   delimited by '@'
+                   into Before-At After-At
+               end-unstring
+               inspect After-At
+                   Tallying Tally-Field for all '.'
+               if not Tally-Field = 2
+                   move 'E' to Error-Flag
+               end-if
+           else
                move 'E' to Error-Flag
+           end-if
            .
 
        2000-Read-Feed2.
@@ -225,10 +234,19 @@
            move zero to Tally-Field
            inspect F2-Email-Address
                Tallying Tally-Field for all '@'
-           inspect F2-Email-Address
-               Tallying Tally-Field for all '.com'
-           if not Tally-Field = 2
+           if Tally-Field = 1
+               unstring F2-Email-Address
+                   delimited by '@'
+                   into Before-At After-At
+               end-unstring
+               inspect After-At
+                   Tallying Tally-Field for all '.'
+               if not Tally-Field = 2
+                   move 'E' to Error-Flag
+               end-if
+           else
                move 'E' to Error-Flag
+           end-if
            .
 
        3000-Read-Feed3.

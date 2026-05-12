@@ -386,11 +386,6 @@
                             NAMEA(PAG-Subscript)
                             DNCA(PAG-Subscript)
                end-perform
-      *    else
-      *        perform 2400-Read-Next
-      *        if SQLCODE = 100
-      *            set End-of-Data to true
-      *        end-if
            end-if
            .
        2300-Next-Record.
