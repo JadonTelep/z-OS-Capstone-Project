@@ -250,11 +250,11 @@ Run transaction `MGD1` to display the records in the table.
 
 It is not mandatory to write an update application for CICS, but feel free if you wish.
 
-Compile `<userid>.CAP.SOURCE(CAPUPD)` with `<userid>.CAP.JOBLIB(DB2CICS)` and bind it with `<userid>.CAP.JOBLIB(DB2B)`, binding program `CAPUPD` with plan `MATEGDB'.
-Compile `<userid>.CAP.SOURCE(CAPVAL)`with`<userid>.CAP.JOBLIB(CICSC)` 
-Compile the mapset`<userid>.CAP.MAPLIB(CAPUMSD)`. 
+Compile `<userid>.CAP.SOURCE(CAPUPD)` with `<userid>.CAP.JOBLIB(DB2CICS)` and bind it with `<userid>.CAP.JOBLIB(DB2B)`, binding program `CAPUPD` with plan `MATEGDB`.
+Compile `<userid>.CAP.SOURCE(CAPVAL)`with`<userid>.CAP.JOBLIB(CICSC)`
+Compile the mapset`<userid>.CAP.MAPLIB(CAPUMSD)`.
 Define and install `<userid>.CAP.SOURCE(CAPUPD)`, `<userid>.CAP.SOURCE(CAPVAL)`, and `<userid>.CAP.MAPLIB(CAPVMSD)`.
 Define and install transaction `MGD3`with reference to`<userid>.CAP.SOURCE(CAPUPD)`.
-Define and install DB2entry `MGDENT2`and DB2tran`MGDTRN2`, linking the two. Make sure to connet `MGDENT2`with plan`MATEGDB`and`MGDTRN2`with transaction`MGD3`. 
+Define and install DB2entry `MGDENT2`and DB2tran`MGDTRN2`, linking the two. Make sure to connet `MGDENT2`with plan`MATEGDB`and`MGDTRN2`with transaction`MGD3`.
 Set programs `CAPUPD`, `CAPVAL`, and `CAPUMSD`.
 Run transaction `MGD1` to display the records in the table, put an 'I' in the action section and hit enter to update a record in the table.
